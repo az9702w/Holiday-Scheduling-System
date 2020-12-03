@@ -1,0 +1,178 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    }
+    
+    
+    body {
+        background: #fbf3ff
+    
+    }
+    
+    .container {
+    
+        position: absolute;
+        max-width:800px;
+        height:500px;
+        margin: auto;
+        
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%); 
+        transition: all 0.6s ease-in-out;
+    
+    }
+
+
+
+
+    .myRightCtn {
+    
+        position: relative;
+        background-image:linear-gradient(rgb(231, 231, 41),rgb(25, 231, 25) ) ;
+        border-radius: 25px;
+        color: rgb(192, 192, 192);
+        font: size 12px;
+        box-shadow: 20px 20px 50px grey;
+        display: flex;
+        justify-content: center;
+        align-items:center ; 
+        margin-bottom: 100px;
+        height: 100%; 
+    }
+
+   
+    
+   
+    
+    .myLeftCtn {
+    
+        position: relative;
+        background: #fff ;
+        height:61vh;
+        padding: 50px;
+        padding-left: 50px;
+        justify-content: center;
+        align-items:center ; 
+        height: 75%;
+       
+        }
+    
+    
+    
+        .myLeftCtn header{
+         color: blueviolet;
+         font-size: 24;
+         font-weight: 700;
+         margin-bottom: 20px;  
+            }
+           
+            .row{
+                height: 100%;
+            }
+    
+    
+           
+    
+        .myRightCtn header {
+            color: #fff;
+            font-size: 44;
+            font-weight: 700;
+            margin-bottom: 20px; 
+        }
+        
+
+        .myLeftCtn .myInput {
+            width: 230px;
+            color:black;
+            border-radius: 25px;
+            box-shadow: 20px 20px 50px grey;
+            padding: 10px;
+            padding-left: 50;
+            border:none;
+            -webkit-box-shadow:0px 10px 49px -10px rgba (0,0,0,0.7);
+            -moz-box-shadow: 0px 10px 49px -10px    rgba (0,0,0,0.7);
+            box-shadow: 0px 10px 49px -10px    rgba (0,0,0,0.7);  
+                }
+
+
+        .myRightCtn .myInput {
+            width: 230px;
+            color:black;
+            border-radius: 25px;
+            padding: 10px;
+            padding-left: 50;
+            border:none;               
+                   
+            -webkit-box-shadow:0px 10px 49px -10px rgba (0,0,0,0.7);
+            -moz-box-shadow: 0px 10px 49px -10px    rgba (0,0,0,0.7);
+            box-shadow: 0px 10px 49px -10px    rgba (0,0,0,0.7);        
+               }
+
+
+
+        .myLeftCtn  .myInput:focus {
+            outline: none;
+        }
+
+
+        .myRightCtn  .myInput:focus {
+            outline: none;
+        }
+
+
+
+        .myForm {
+            position: relative;
+            margin-top: 50;
+        }
+
+        .myForm {
+            position: relative;
+            margin-top: 50;
+        }
+
+       
+
+
+        .myLeftCtn  .button {
+            background: linear-gradient(#ff0000, #f4a460);
+            color: #fff;
+            width: 230px;
+            border:none;
+            border-radius: 25px;
+
+            -webkit-box-shadow:0px 10px 41px -11px rgba (0,0,0,0.7);
+            -moz-box-shadow: 0px 10px 41px -11px    rgba (0,0,0,0.7);
+            box-shadow: 0px 10px 41px -11px    rgba (0,0,0,0.7);  
+
+        }
+
+        .myLeftCtn .button:focus{
+            outline: none;
+        }
+
+
+        .myRightCtn  .button {
+            background: linear-gradient(#fff);
+            color: black;
+            width: 120px;
+            border:none;
+            border-radius: 25px;
+            -webkit-box-shadow:0px 10px 41px -11px rgba (0,0,0,0.7);
+            -moz-box-shadow: 0px 10px 41px -11px    rgba (0,0,0,0.7);
+            box-shadow: 0px 10px 41px -11px    rgba (0,0,0,0.7);  
+
+        }
+
+
+        .myLeftCtn   .button:hover {
+            background: linear-gradient(#c85bff, #b726ff);
+        }
+
+    
+    

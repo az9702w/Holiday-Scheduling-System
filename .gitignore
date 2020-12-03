@@ -1,0 +1,16 @@
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/media
+venv
+webfonts
+all.min.css
+bootstrap.min.js
+fontawesome-free-5.15.1-web
+.DS_Store
+db.sqlite3
+/static
