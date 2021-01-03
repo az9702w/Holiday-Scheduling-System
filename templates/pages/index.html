@@ -1,4 +1,8 @@
 {% load static %}
+
+ <!--For highlighting the current page-->
+{% load active_link_tags %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,26 +18,47 @@
 
     <link rel="stylesheet" href="{% static 'css/Style.css' %}">
 
-    <title>Web App</title>
+    <title>Holiday Scheduling System</title>
 </head>
 <body>
+
+       <!--Navigation-->
+
+       <nav class="navbar navbar-expand-md navbar-dark bg-light sticky-top">
+        <div class="container-fluid">
+            <h2> Welcome To Holiday Scheduling System </h2>
+             <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  {% active_link 'index' 'active' %} ">
+                        <a class="nav-link" href="#">Sign Up</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{%  url 'Login' %}">Sign In</a>
+                      </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
 <div class="container">
    
     
     <div class="card">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="myLeftCtn">
                 
                     <form class="myForm text-center">
                         <header>Create new account</header>
-                        <!-- user name div  -->
-                        <div class="form-group">
-                            <!-- fas fa icon coming from font-awesome  -->
-                            <i class="fas fa-user"></i>
-                            <input class="myInput" type="text" placeholder="Username"
-                                   id="username" required>
-                        </div>
+
                         <!-- email field div  -->
                         <div class="form-group">
                             <!-- fas fa icon coming from font-awesome  -->
@@ -42,11 +67,26 @@
                                    id="email" required>
                         </div>
 
+                        <div class="form-group">
+                            <!-- fas fa icon coming from font-awesome  -->
+                            <i class="fas fa-user"></i>
+                            <input class="myInput" type="text" placeholder="Department"
+                                   id="username" required>
+                        </div>
+
                         <!-- password field div  -->
                         <div class="form-group">
                             <!-- fas fa icon coming from font-awesome  -->
                             <i class="fas fa-lock"></i>
                             <input class="myInput" type="text" placeholder="password"
+                                   id="Password" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <!-- fas fa icon coming from font-awesome  -->
+                            <i class="fas fa-lock"></i>
+                            <input class="myInput" type="text" placeholder=" confirm password"
                                    id="Password" required>
                         </div>
 
@@ -78,44 +118,13 @@
        
 
   <!-- Login Form  -->
-            <div class="col-md-6">
-                <div class="myRightCtn">
-            
-                    <form class="myForm2 text-center">
-                        <header>Login</header>
 
-                        <!-- email field div  -->
-                        <div class="form-group">
-                            <!-- fas fa icon coming from font-awesome  -->
-                            <i class="fas fa-envelope"></i>
-                            <input class="myInput" type="text" placeholder="Email"
-                                   id="emails" required>
-                        </div>
-
-                        <!-- password field div  -->
-                        <div class="form-group">
-                            <!-- fas fa icon coming from font-awesome  -->
-                            <i class="fas fa-lock"></i>
-                            <input class="myInput" type="text" placeholder="password"
-                                   id="Passwords" required>
-                        </div>
-
-
-                        <input type="submit" class="button" value="Login">
-
-                    </form>
-
-                </div>
-
-
-                    </form>
-               </div>
 
 
               
 
 
-        </div>
+           </div>
     </div>
 
 </div>

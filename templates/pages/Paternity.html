@@ -1,0 +1,133 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <!-- Font awesome -->
+   <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+   <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <title>Paternity Leaves</title>
+  </head>
+  <body>
+
+    <!--Navigation-->
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-light sticky-top">
+        <div class="container-fluid">
+            <h2> Dashboard </h2>
+             <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+                <ul class="navbar-nav ml-auto">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Choose Type of Holidays
+                        </button>
+
+                        <!--DropDown Items-->
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{%  url 'BookHolidays' %}">Book Holidays</a>
+                            <a class="dropdown-item" href="{%  url 'MaternityLeaves' %}">Maternity Leaves</a>
+                            <a class="dropdown-item" href="{%  url 'PaternityLeaves' %}">Paternity Leaves</a>
+                            <a class="dropdown-item" href="{%  url 'OtherTypes' %}">Other Types</a>
+
+                        </div>
+                      </div>
+                      <!--Navigation bar Item-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Accounts' %}"> Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <h3 class="text-center"> Paternity Leaves</h3>
+
+
+      <!--Start and End Date Table-->
+
+<div class="container">  
+    <div class="row">
+        <div class= "col-5">
+            <div class="Start_End">
+                <h5> Complete the Following Details: </h5>
+                <div class="card" style="width: 18rem;">
+                    
+                    <div class="card-body">
+                        <h6 class="card-title">Start Date:</h6>
+                        <input type="date" class="form-control" id="start date " name="SD" value="2018-07-22" min="1950-01-01" max="2050-12-31">
+                        <h6 class="card-title">End Date:</h6>
+                        
+                        <input type="date" class="form-control" id="end date " name="ED" value="2019-07-22" min="1950-01-01" max="2050-12-31">
+                        <h6 class="card-title">Purposed Last Working Day:</h6>
+                        <input type="date" class="form-control" id="end date " name="ED" value="2019-07-22" min="1950-01-01" max="2050-12-31">
+
+
+                        <a href="#" class="btn btn-primary">Submit the request</a>
+
+
+                    </div>
+                </div>
+
+                <h1></h1>
+            
+                <!--FeedBack box-->
+                <div class="card" style="width: 21rem;">
+                    <div class="card-header text-center">
+                        Line manager's feedback
+                    </div>
+                    <div class="card-body">
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-2"></div>
+
+
+        <!--Previous Holidays Box-->
+
+        <div class= "col-5">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header text-center">
+                    Previous Holiday History
+                </div>
+                <div class="card-body"> 
+                    <textarea class="form-control rounded-0" id="exampleFormControlTextarea1" rows="15"></textarea>
+                </div>
+            </div>
+
+           
+    </div>
+
+</div>
+
+
+
+
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
