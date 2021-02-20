@@ -34,12 +34,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
-    'Dashboard.apps.DashboardConfig',
-    'MaternityLeaves.apps.MaternityleavesConfig',
-    'PaternityLeaves.apps.PaternityleavesConfig',
-    'OtherTypes.apps.OthertypesConfig',
     'accounts.apps.AccountsConfig',
-    'Login.apps.LoginConfig',
+    'BookHolidays.apps.BookholidaysConfig',
     'active_link',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -85,8 +81,12 @@ WSGI_APPLICATION = 'Holiday_Scheduling_System.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Holiday_System_DB',
+        'USER': 'postgres',
+        'PASSWORD' : '1234',
+        'HOST' : 'localhost'
+
     }
 }
 
@@ -133,3 +133,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'Holiday_Scheduling_System/static')
 ]
+# Error or any other Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+  
+}

@@ -34,10 +34,10 @@
     
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item  ">
-                            <a class="nav-link" href="{%  url 'index' %}">Sign Up</a>
+                            <a class="nav-link" href="{%  url 'register' %}">Sign Up</a>
                           </li>
-                          <li class="nav-item {% active_link 'Login' 'active' %} ">
-                            <a class="nav-link" href="{%  url 'Login' %}">Sign In</a>
+                          <li class="nav-item {% active_link 'login' 'active' %} ">
+                            <a class="nav-link" href="{%  url 'login' %}">Sign In</a>
                           </li>
                     </ul>
                 </div>
@@ -54,15 +54,17 @@
   <!-- Login Form  -->
             <div class="col-md-12">
                 <div class="myRightCtn">
-            
-                    <form class="myForm2 text-center">
+               <!-- Alerts -->
+               {% include 'pages/_alert.html' %}
+                    <form class="myForm2 text-center"  action="{% url 'login'  %}"  method="POST"  >
+                        {%  csrf_token %}
                         <header>Login</header>
 
                         <!-- email field div  -->
                         <div class="form-group">
                             <!-- fas fa icon coming from font-awesome  -->
                             <i class="fas fa-envelope"></i>
-                            <input class="myInput" type="text" placeholder="Email"
+                            <input class="myInput" type="text" placeholder="Email" name='email'
                                    id="emails" required>
                         </div>
 
@@ -70,8 +72,8 @@
                         <div class="form-group">
                             <!-- fas fa icon coming from font-awesome  -->
                             <i class="fas fa-lock"></i>
-                            <input class="myInput" type="text" placeholder="password"
-                                   id="Passwords" required>
+                            <input class="myInput" type="password" placeholder="password"
+                                 name='password'  id="Passwords" required>
                         </div>
 
 

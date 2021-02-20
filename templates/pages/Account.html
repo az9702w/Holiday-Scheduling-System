@@ -55,22 +55,30 @@
 
 
     
-
-
-
-    <form>
+ <!-- Post request going from the form to server -->
+    <form class="myForm text-left" action="{% url 'accounts'  %}"  method="POST">
+        {%  csrf_token %}
         <div class="form-row">
             <div class="col-lg-1">
             </div>
            
-            <div class="form-group col-md-5">
-                <label for="Name">Full Name</label>
-                <input type="text" class="form-control" id="Name" placeholder="Full Name">
+            <div class="form-group col-md-3">
+                <label for="First Name">First Name</label>
+                <input type="text" class="form-control" id="First Name" placeholder="First Name" name='first_name'>
             </div>
             <div class="form-group col-md-3">
-               <label for="dob">Date of Birth:</label>
+                <label for="Last Name">Last Name</label>
+                <input type="text" class="form-control" id="Last Name" placeholder="Last Name" name ='last_name'>
+            </div>
+            <div class="form-group col-md-2">
+               <label for="select_1">Level</label>
 
-                <input type="date" class="form-control" id="dob" name="DOB" value="2018-07-22" min="1950-01-01" max="2050-12-31">
+               <select class="form-control" id="select_1">
+                <option>Line Manager</option>
+                <option>Assistant Line Manager</option>
+                <option>Senior</option>
+                <option>Junior</option>
+              </select>
               
             </div>
         </div>
@@ -87,7 +95,12 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="Department">Department</label>
-                <input type="text" class="form-control" id="Department" placeholder="Department">
+                <select class="form-control" id="select_1">
+                    <option>Finance</option>
+                    <option>Cyber Security</option>
+                    <option>Web development Team</option>
+                    <option>Backend Team</option>
+                  </select>
             </div>
 
 
@@ -149,6 +162,18 @@
 
 
             <button type="submit" class="btn btn-primary">Change Password</button>
+        </div>
+
+
+
+        <div class="form-row">  
+            <div class="col-lg-1">
+            </div>
+
+            
+
+            <a class="btn btn-primary" href="{%  url 'register' %}">Log out</a>
+           
         </div>
     
       </form>

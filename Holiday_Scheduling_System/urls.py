@@ -18,12 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
      path('', include('pages.url')),
-     # book holidays-- where algorithm will be  deployed
-     path('BookHolidays/', include('Dashboard.urls')),
-     path('MaternityLeaves/', include('MaternityLeaves.urls')),
-     path('PaternityLeaves/', include('PaternityLeaves.urls')),
-     path('OtherTypes/', include('OtherTypes.urls')),
-     path('accounts/', include('accounts.urls')),
-     path('login/', include('Login.urls')),
+     path('', include('accounts.urls')),
+     path('', include('BookHolidays.urls')),
      path('admin/', admin.site.urls),
 ]

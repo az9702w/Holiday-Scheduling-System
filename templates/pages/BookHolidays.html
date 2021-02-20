@@ -67,14 +67,27 @@
                 <div class="card" style="width: 18rem;">
                     
                     <div class="card-body">
-                        <h6 class="card-title">Start Date:</h6>
-                        <input type="date" class="form-control" id="start date " name="SD" value="2018-07-22" min="1950-01-01" max="2050-12-31">
-                        <h6 class="card-title">End Date:</h6>                     
-                        <input type="date" class="form-control" id="end date " name="ED" value="2019-07-22" min="1950-01-01" max="2050-12-31">
-                        <h6 class="card-title">Purposed Last Working Day:</h6>
-                        <input type="date" class="form-control" id="end date " name="ED" value="2019-07-22" min="1950-01-01" max="2050-12-31">
-                        <a href="#" class="btn btn-primary">Submit the request</a>
+                        <!-- Bringing the alert message in -->
+                        {% include 'pages/_alert.html' %}
+                      <!-- Post request being made from the form to server -->
+                      <form class="myForm text-left" action="{% url 'bookholidays'  %}"  method="POST">
+                        {%  csrf_token %}
+                        
+                            <h6 class="card-title">Start Date:</h6>
+                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                        
+                      
+                            <h6 class="card-title">End Date:</h6>                     
+                            <input type="date" class="form-control" id="end_date" name="end_date" required>
+                        
+                        
+                            <h6 class="card-title">Purposed Last Working Day:</h6>
+                            <input type="date" class="form-control" id="last date" name="last_date"  >
+                     
 
+                           
+                        <input type="submit" class="btn" value="Submit the request">
+                      </form>
                     </div>
                 </div>
 
