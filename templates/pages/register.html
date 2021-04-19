@@ -47,8 +47,10 @@
     </nav>
 
 
-
+    <h3 class="text-center"> Create new account</h3>
+   
 <div class="container">
+    <br />
    
     
     <div class="card">
@@ -57,73 +59,119 @@
                 <div class="myLeftCtn">
                      <!-- Alerts -->
                      {% include 'pages/_alert.html' %}
-                    <form class="myForm text-center" action="{% url 'register'  %}"  method="POST">
-                        {%  csrf_token %}
-                        <header>Create new account</header>
+                    <form class="myForm text-left" action="{% url 'register'  %}"  method="POST">
+                       {% csrf_token %}
+                        <br />
+
+                        <div class="form-row">
+                       <div class="text-center">
+                        
+                      </div>>
+
+
+                      <div class="form-group">
+                        <input class="myInput"  type="email" class="form-control" id="email" placeholder="Email" name='email'> 
+                       </div>
+
+                       <div class="col-lg-2">
+                       </div>
+
+                       <div class="form-group">
+                        <input class="myInput"  type="username" class="form-control" id="username" placeholder="username" name='username'>
+
+                       </div>
+                      </div>
+
+                      <br />
+                     <div class="form-row">
+                      
 
                         <!-- email field div  -->
                         <div class="form-group">
-                            <!-- fas fa icon coming from font-awesome  -->
-                            <i class="fas fa-envelope"></i>
-                            <input class="myInput" type="email" name="email" placeholder="Email"
-                                   id="email" required>
+                          
+                         <input class="myInput"  type="name" class="form-control" id="First Name" placeholder="First Name" name='first_name'>
+                        </div>
+
+                        <div class="col-lg-2">
                         </div>
 
                         <div class="form-group">
-                            <!-- fas fa icon coming from font-awesome  -->
-                            <i class="fas fa-user"></i>
-                            <input class="myInput" type="username" placeholder="username"
-                                   name="username" id="username" required>
+                            <input class="myInput"  type="name" class="form-control" id="Last Name" placeholder="Last Name" name='last_name'>
+
                         </div>
+                     </div>
+
+                     <br />
+
+                     <div class="form-row">
+                      
+
+                        <!-- email field div  -->
+                        <div class="form-group">
+                            <select class="form-control myInput" name='department'>
+                                <option>Finance</option>
+                                <option>Cyber Security</option>
+                                <option>Web Development Team</option>
+                                <option>Backend Team</option>
+                              </select>
+                        </div>
+
+                        <div class="col-lg-2">
+                        </div>
+
+                        <div class="form-group" >
+                            
+                             <select class="form-control myInput" name='level' >
+                                 <option>Line Manager</option>
+                                 <option>Assistant Line Manager</option>
+                                 <option>Senior</option>
+                                 <option>Junior</option>
+                             </select>
+
+                        </div>
+                     </div>
+
+                     <br />
+
+                     <div class="form-row">
 
                         <!-- password field div  -->
                         <div class="form-group">
-                            <!-- fas fa icon coming from font-awesome  -->
-                            <i class="fas fa-lock"></i>
+             
                             <input class="myInput" type="password" placeholder="password"
                                    name="password" id="Password" required>
                         </div>
-
+                    
+                        <div class="col-lg-2">
+                        </div>
 
                         <div class="form-group">
-                            <!-- fas fa icon coming from font-awesome  -->
-                            <i class="fas fa-lock"></i>
+                      
                             <input class="myInput" type="password" placeholder=" confirm password"
                             name="password2"  id="Password" required>
                         </div>
+                     </div>
 
-                        <!-- Terms and condition  -->
+                        <br />
+                        <br />
 
-                        <div class="form-group">
-                            <label><input id="check_1" name="check_1"
-                                          type="checkbox" required><small> I read and agree
-                                to Terms and Conditions </small>
-                                <div class="invalid-feedback">
-                                    You must check the box
-
-                                </div>
-
-                            </label>
-                        </div>
-
-                        <input type="submit" class="button" value="Create Account">
+                       <div class="text-center">
+                        <input  type="submit" class="button" value="Create Account">
+                      </div>>
 
                     </form>
 
                 </div>
 
 
-                </form>
+        
            
             </div>
 
        
 
-  <!-- Login Form  -->
-
-
-
-              
+ 
+         
 
 
            </div>
@@ -145,3 +193,4 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+

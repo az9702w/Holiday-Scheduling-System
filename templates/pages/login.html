@@ -56,7 +56,7 @@
                 <div class="myRightCtn">
                <!-- Alerts -->
                {% include 'pages/_alert.html' %}
-                    <form class="myForm2 text-center"  action="{% url 'login'  %}"  method="POST"  >
+                    <form class="myForm2 text-center"  action="{% url 'login'  %}"  method="POST">
                         {%  csrf_token %}
                         <header>Login</header>
 

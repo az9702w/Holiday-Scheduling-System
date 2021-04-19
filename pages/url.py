@@ -7,5 +7,6 @@ urlpatterns = [
     path('MaternityLeaves/', views.maternity, name= 'MaternityLeaves'),
      path('PaternityLeaves/', views.paternity, name= 'PaternityLeaves'),
     path('BookHolidays/', views.bookholidays, name= 'BookHolidays'),
-    path('accounts/', views.accounts, name= 'Accounts')
+    path('accounts/', views.accounts, name= 'Accounts'),
+    path('PreviousHistory/', views.history, name= 'History')
 ]

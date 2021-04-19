@@ -29,12 +29,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.Account'
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
-    'accounts.apps.AccountsConfig',
+    'accounts',
     'BookHolidays.apps.BookholidaysConfig',
     'active_link',
     'django.contrib.admin',
@@ -44,6 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+
+ADMIN_SITE_HEADER = "Holiday Scheduling Administration"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,6 +63,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Holiday_Scheduling_System.urls'
+
 
 TEMPLATES = [
     {
@@ -73,7 +81,12 @@ TEMPLATES = [
     },
 ]
 
+
+
+
 WSGI_APPLICATION = 'Holiday_Scheduling_System.wsgi.application'
+
+
 
 
 # Database
@@ -139,3 +152,11 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
   
 }
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'abdullahzulfiqar110@gmail.com'
+EMAIL_HOST_PASSWORD = '**'
+EMAIL_USE_TLS = True
+#EMAIL_USE_SSL = False

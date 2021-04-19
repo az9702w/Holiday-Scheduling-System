@@ -1,0 +1,166 @@
+{% load static %}
+{% load active_link_tags %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   <!-- Font awesome -->
+   <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+   <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <title>
+        accounts
+    </title>
+  </head>
+  <body>
+
+    <!--Navigation-->
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-light sticky-top">
+        <div class="container-fluid">
+          {% if user.is_authenticated %}
+          <h5>Welcome {{user.username}} (DASHBAORD) <h5>
+           {%  endif %}
+             <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <ul class="navbar-nav ml-auto">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Choose Type of Holidays
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{%  url 'BookHolidays' %}">Book Holidays</a>
+                            <a class="dropdown-item" href="{%  url 'MaternityLeaves' %}">Maternity Leaves</a>
+                            <a class="dropdown-item" href="{%  url 'PaternityLeaves' %}">Paternity Leaves</a>
+                            <a class="dropdown-item" href="{%  url 'OtherTypes' %}">Other Types</a>
+                            <li>
+                              <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">Logout</a>
+                              <form action="{% url 'Logout' %}" method="POST" id="logout">
+                                  {% csrf_token %}
+                                  <input type="hidden">
+
+                              </form>
+                          </li>
+
+                        </div>
+                      </div>
+                    <li class="nav-item  {% active_link 'History' 'active' %} ">
+                        <a class="nav-link" href="{%  url 'History' %}"> Holiday History</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div>
+        
+    </div>    
+
+    <h3 class="text-center"> History</h3>
+
+    <br />
+    <br />
+            <!-- Bringing the alert message in -->
+            {% include 'pages/_alert.html' %} 
+
+            <br />
+
+    <div class="d-md-flex h-md-100 align-items-center">
+        <div class="col-1"></div>
+        <!-- First Half -->
+        
+        <div class="col-md-4 p-0 bg-white h-md-100">
+            <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+            
+                <table style="width:100%">
+                    <tr>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                     
+                    </tr>
+                    {% for get_approved_requests in approved_dates %}
+
+                      <tr>
+                         <td>{{get_approved_requests.start_date}}</td>
+                         <td>{{get_approved_requests.end_date}}</td>
+                      </tr>
+                    {% endfor %}
+
+                  </table>
+             
+                    
+              
+            </div>
+        </div>
+
+        <div class="col-1"></div>
+        
+        <!-- Second Half -->
+        
+        <div class="col-md-4 p-0 bg-white h-md-100 loginarea">
+            <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+                <table style="width:100%">
+                    <tr>
+                      <th>Holidays Left</th>
+                      <th>Holidays Taken</th>
+                     
+                    </tr>
+                    <tr>
+                      {% if update_history %}
+                      <td>{{update_history.Holidays_left}}</td>
+                      <td>{{update_history.Holidays_taken}}</td>
+                      {% endif%}
+                      
+                    </tr>
+
+                  </table>
+             
+            </div>
+        </div>
+
+
+       
+            
+ </div>
+
+ <br />
+ <br />
+ <br />
+ <br />
+
+<div class="form-row">
+    <div class="col-lg-1">
+    </div>
+
+    <div class="form-group col-md-5" >
+        <a class="btn btn-primary" href="{%  url 'bookholidays' %}">Click here to book more holidays</a>
+        
+    </div>
+
+
+
+</div>
+
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

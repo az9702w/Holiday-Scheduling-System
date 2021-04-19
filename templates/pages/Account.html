@@ -42,11 +42,19 @@
                             <a class="dropdown-item" href="{%  url 'MaternityLeaves' %}">Maternity Leaves</a>
                             <a class="dropdown-item" href="{%  url 'PaternityLeaves' %}">Paternity Leaves</a>
                             <a class="dropdown-item" href="{%  url 'OtherTypes' %}">Other Types</a>
+                            <li>
+                                <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">Logout</a>
+                                <form action="{% url 'Logout' %}" method="POST" id="logout">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+
+                                </form>
+                            </li>
 
                         </div>
                       </div>
-                    <li class="nav-item  {% active_link 'Accounts' 'active' %} ">
-                        <a class="nav-link" href="#"> Account</a>
+                    <li class="nav-item  {% active_link 'History' 'active' %} ">
+                        <a class="nav-link" href="{%  url 'History' %}"> Holiday History</a>
                     </li>
                 </ul>
             </div>
@@ -54,14 +62,39 @@
     </nav>
 
 
+
+    <div>
+        
+    </div>    
     
  <!-- Post request going from the form to server -->
     <form class="myForm text-left" action="{% url 'accounts'  %}"  method="POST">
+       
         {%  csrf_token %}
+        <!-- Bringing the alert message in -->
+        {% include 'pages/_alert.html' %} 
+
         <div class="form-row">
             <div class="col-lg-1">
             </div>
-           
+
+            <div class="form-group col-md-5">
+                <label for="History"></label>Before proceeding further, fill out below form please.</label>
+            </div>
+
+
+
+        </div>
+
+
+<form class="myForm text-left" action="{% url 'accounts'  %}"  method="POST">
+            {%  csrf_token %} 
+        <div class="form-row">
+            <div class="col-lg-1">
+            </div>
+            
+            
+
             <div class="form-group col-md-3">
                 <label for="First Name">First Name</label>
                 <input type="text" class="form-control" id="First Name" placeholder="First Name" name='first_name'>
@@ -73,7 +106,7 @@
             <div class="form-group col-md-2">
                <label for="select_1">Level</label>
 
-               <select class="form-control" id="select_1">
+               <select class="form-control" name='staff_level' id="select_1">
                 <option>Line Manager</option>
                 <option>Assistant Line Manager</option>
                 <option>Senior</option>
@@ -87,6 +120,7 @@
 
         <div class="form-row">
             <div class="col-lg-1">
+                
             </div>
 
             <div class="form-group col-md-4">
@@ -95,7 +129,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="Department">Department</label>
-                <select class="form-control" id="select_1">
+                <select class="form-control" name='department' id="select_1">
                     <option>Finance</option>
                     <option>Cyber Security</option>
                     <option>Web development Team</option>
@@ -103,80 +137,35 @@
                   </select>
             </div>
 
-
         </div>
+     
 
 
         <div class="form-row">
             <div class="col-lg-1">
             </div>
 
-            <div class="form-group col-md-4">
-                <label for="inputEmail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            <div class="form-group col-md-5">
+                <label for="History">To view your previous holiday history, click this link.</label>
+                <a href="{%  url 'History' %}">Holiday History Page</a>
             </div>
 
 
 
         </div>
+ </form>       
 
 
-        <div class="form-row">
-            <div class="col-lg-1">
-            </div>
-                <div class="form-group col-md-3">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                </div>
-
-                <div class="form-group col-md-2">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-
-                <div class="form-group col-md-3">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                    </select>
-                </div>
-
-
-        </div>
-
-
+</div>
 
         <div class="form-row">  
             <div class="col-lg-1">
             </div>
-            <div class="form-group col-md-3">
-                <label for="inputPassword">Old Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Old Password">
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="inputPassword">New Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Old Password">
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">Change Password</button>
-        </div>
-
-
-
-        <div class="form-row">  
-            <div class="col-lg-1">
-            </div>
-
-            
-
             <a class="btn btn-primary" href="{%  url 'register' %}">Log out</a>
            
         </div>
-    
-      </form>
+        <!--<input type="submit" class="btns" value="Submit"> -->
+    </form>
 
 
 
