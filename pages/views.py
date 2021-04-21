@@ -47,6 +47,7 @@ def othertypes(request):
                 messages.success(request, "Your leave request is submitted. ")
                 leaves_request = Leaves_request.objects.create(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level,start_date=start_date,end_date=end_date,staff_note_area=staff_note)
                 leaves_request.save
+                 # sending email is commented out
                 '''send_mail(
             subject,
             str(formatted_start_date) + " and end_date: " + str(formatted_end_date),
@@ -99,6 +100,7 @@ def maternity(request):
                 messages.success(request, "Your leave request is submitted. ")
                 leaves_request = Leaves_request.objects.create(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level,start_date=start_date,end_date=end_date,staff_note_area=staff_note)
                 leaves_request.save
+                 # sending email is commented out
                 '''send_mail(
             subject,
             str(formatted_start_date) + " and end_date: " + str(formatted_end_date),
@@ -129,7 +131,6 @@ def paternity(request):
         last_name= request.user.last_name
         department = request.user.department
         staff_level =request.user.level
-        sender = str(email)
         
         #getting dates from form
         start_date = request.POST['start_date']
@@ -148,7 +149,7 @@ def paternity(request):
                 messages.success(request, "Your leave request is submitted. ")
                 leaves_request = Leaves_request.objects.create(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level,start_date=start_date,end_date=end_date,staff_note_area=staff_note)
                 leaves_request.save
-
+       # sending email is commented out
                 '''send_mail(
             subject,
             str(formatted_start_date) + " and end_date: " + str(formatted_end_date),
@@ -178,6 +179,9 @@ def bookholidays(request):
 @login_required(login_url='/pages/login/')   
 def accounts(request):
     return render(request, 'pages/Account.html')
+
+
+
 
 @login_required(login_url='/login/')
 def history(request):

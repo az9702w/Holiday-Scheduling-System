@@ -34,7 +34,8 @@ def input_dates(request):
         staff_note = request.POST['note_area']
         username = request.user.username
         firstname = request.user.first_name 
-        if holidays_left(start_date,end_date,request,username,firstname,staff_note):
+        last_name = request.user.last_name
+        if holidays_left(start_date,end_date,request,username,firstname,last_name,staff_note):
             return redirect('bookholidays/')
 
 
@@ -53,7 +54,7 @@ def const_date_checker(start_date,end_date,request):
 '''This function checks if the new request maker is providing the holidays more than he/she has left.
  Then based on that, request is being saved in Holiday_request table in database.
 '''
-def holidays_left(start,end,request,username,first_name,staff_note): 
+def holidays_left(start,end,request,username,first_name,last_name,staff_note): 
     #Formatting date coming from HTML form to date type in python.
      formatted_start_date = datetime.strptime(start, '%Y-%m-%d').date()     
      formatted_end_date = datetime.strptime(end, '%Y-%m-%d').date()  
@@ -62,11 +63,11 @@ def holidays_left(start,end,request,username,first_name,staff_note):
      #calling Account table from DB to get attributes of employees.
      staff = Account.objects.get(username=username)
      #calling Staff table from DB to check holidays taken and left.
-     holiday_stat = Staff.objects.get(first_name=first_name) 
+     holiday_stat = Staff.objects.get(first_name=first_name,last_name=last_name) 
      #This 'if' block is for the junior level staff 
      if staff.level == "Junior":          
         if holiday_stat.Holidays_left <= 0 or holidays_requested > holiday_stat.Holidays_left or holidays_requested > total_junior_staff_holidays:
-            messages.error (request, "Cannot be booked .")
+            messages.error (request, "You may not have enough holidays left, please check history page.")
         elif const_date_checker(start,end,request) == False:
             return redirect('bookholidays')
         elif past_dates(formatted_start_date,formatted_end_date,request) == False:
@@ -76,7 +77,7 @@ def holidays_left(start,end,request,username,first_name,staff_note):
             same_dates_twice(staff.first_name,staff.last_name,staff.level,staff.department,start,end,request,staff_note) 
      elif staff.level == "Senior":          
         if holiday_stat.Holidays_left <= 0 or holidays_requested > holiday_stat.Holidays_left or holidays_requested > total_senior_staff_holidays:
-            messages.error (request, "Cannot be booked.")
+            messages.error (request, "You may not have enough holidays left, please check history page.")
         elif const_date_checker(start,end,request) == False:
             return redirect('bookholidays')
         elif past_dates(formatted_start_date,formatted_end_date,request) == False:
@@ -86,7 +87,7 @@ def holidays_left(start,end,request,username,first_name,staff_note):
             same_dates_twice(staff.first_name,staff.last_name,staff.level,staff.department,start,end,request,staff_note)
      elif staff.level == "Line Manager":          
         if holiday_stat.Holidays_left <= 0 or holidays_requested > holiday_stat.Holidays_left or holidays_requested > total_manager_holidays:
-            messages.error (request, "Cannot be booked.")
+            messages.error (request, "You may not have enough holidays left, please check history page.")
         elif const_date_checker(start,end,request) == False:
             return redirect('bookholidays')
         elif past_dates(formatted_start_date,formatted_end_date,request) == False:
@@ -96,7 +97,7 @@ def holidays_left(start,end,request,username,first_name,staff_note):
             same_dates_twice(staff.first_name,staff.last_name,staff.level,staff.department,start,end,request,staff_note) 
      elif staff.level == "Assistant Line Manager":          
         if holiday_stat.Holidays_left <= 0 or holidays_requested > holiday_stat.Holidays_left or holidays_requested > total_manager_holidays:
-            messages.error (request, "Cannot be booked.")
+            messages.error (request, "You may not have enough holidays left, please check history page.")
         elif const_date_checker(start,end,request) == False:
             return redirect('bookholidays')
         elif past_dates(formatted_start_date,formatted_end_date,request) == False:
@@ -104,16 +105,6 @@ def holidays_left(start,end,request,username,first_name,staff_note):
         else:
             #If request with same dates is submitted twice a person will get error message
             same_dates_twice(staff.first_name,staff.last_name,staff.level,staff.department,start,end,request,staff_note)              
-        # Calling holiday request table to grab its attributes
-            #holiday_req_table = Holidays_request.objects.get(First_name=staff.first_name,Staff_level=staff.level,Department=staff.department)
-            #max_people_off_in_dep(holiday_req_table.First_name,holiday_req_table.Staff_level,holiday_req_table.Department,start,end,request)
-   
-            
-            #Processing the request - based on the constraints (3 staff must be present in the office.)
-            #constraint_checking(holiday_req_table.First_name,holiday_req_table.Staff_level,holiday_req_table.Department,start,end)
-                    #holidays_taken = Staff.Holidays_taken + holidays_requested
-                    #holidays_left  =total_junior_staff_holidays - holidays_taken
-            #constraint_checking(first_name,start,end)
         return True
 
 
@@ -135,18 +126,18 @@ def same_dates_twice(first_name,last_name,staff_level,department,start,end,reque
             holiday_request = Holidays_request.objects.create(First_name=first_name,Last_name=last_name,Staff_level=staff_level, Department=department,
             start_date=start,end_date=end, staff_note_area=staff_note)
             holiday_request.save
-            messages.success(request,"request submitted!")
+            messages.success(request,"request submitted, please wait for your manager's feedback")
             print("we got success!")
             max_people_off_in_dep(department,staff_level,start,end,request)
-            #feedback(request)
+            
     else:
                 holiday_request = Holidays_request.objects.create(First_name=first_name,Last_name=last_name,Staff_level=staff_level, Department=department,
                 start_date=start,end_date=end,staff_note_area=staff_note )
                 holiday_request.save       
-                messages.success(request,"request submitted!!!!!!")
-                print("we got success!!!!!")
+                messages.success(request,"request submitted, please wait for your manager's feedback")
+                
                 max_people_off_in_dep(department,staff_level,start,end,request)
-                #feedback(request)              
+                              
     return True
 
 def max_people_off_in_dep(department,staff_level,start,end,request):
@@ -177,10 +168,11 @@ def max_people_off_in_dep(department,staff_level,start,end,request):
             #Update Staff table in DB with Holidays taken and left.
             get_staff = Staff.objects.get(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level)
             Staff.objects.filter(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level).update(Holidays_taken=get_staff.Holidays_taken+holidays_requested,Holidays_left=get_staff.Holidays_left-holidays_requested) 
+            print(str(get_staff.Holidays_left) + " taken: " + str(get_staff.Holidays_taken))
             print("count is below or equal to two")
         return True
      
-
+# if third user provides the overlapping dates with first 2 then he's suggested with alternatives.
 def overlapping(staff_level,department,start,end,request):
     formatted_start_date = datetime.strptime(start, '%Y-%m-%d').date()     
     formatted_end_date = datetime.strptime(end, '%Y-%m-%d').date()
@@ -193,16 +185,16 @@ def overlapping(staff_level,department,start,end,request):
     for hr in  holiday_requests:
         if (hr.start_date <= formatted_start_date and formatted_start_date <=hr.end_date):
             count +=1  
-            print('Dates fall in already booked date..............')
+            print('Dates fall in already booked date.')
             if count >= 2:
                 alternatives(staff_level,department,start,end,request)
                 Holidays_request.objects.filter(Staff_level=staff_level,Department=department,start_date=formatted_start_date,end_date=formatted_end_date).update(approved=False)
                 return False
         else:
             Holidays_request.objects.filter(Staff_level=staff_level,Department=department,start_date=formatted_start_date,end_date=formatted_end_date).update(approved=True)
-            get_staff = Staff.objects.get(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level)
-            Staff.objects.filter(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level).update(Holidays_taken=get_staff.Holidays_taken+holidays_requested,Holidays_left=get_staff.Holidays_left-holidays_requested)
-            print("Come in else block.")
+    get_staff = Staff.objects.get(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level)
+    #updating holidays left and taken in the database.
+    Staff.objects.filter(first_name=first_name,last_name=last_name,department=department,staff_level=staff_level).update(Holidays_taken=get_staff.Holidays_taken+holidays_requested,Holidays_left=get_staff.Holidays_left-holidays_requested)
         
     return True, ('bookholidays/')
 
@@ -219,12 +211,11 @@ def alternatives(staff_level,department,start,end,request):
         suggested_end_date   = formatted_end_date + holidays_requested
         if Holidays_request.objects.filter(Staff_level=staff_level,Department=department,approved=True).count() >= 2:
                 print(first_name + ", Here's your alternatives: suggested start date: " + str(suggested_start_date) + " suggested end date: " +  str(suggested_end_date))
-                messages.error(request, first_name + " Here's your alternative Suggested start date: " + str(suggested_start_date) + " Suggested end date: " + str(suggested_end_date))
-                return redirect('bookholidays/')                
-                #Update Staff table in DB with Holidays taken and left.
+                messages.error(request, first_name + " Here's your alternative Suggested start date: " + str(suggested_start_date) + " Suggested end date: " + str(suggested_end_date) + " However you can still wait for the final decision from your manager.")
+                return redirect('bookholidays/')              
         else:         
              Holidays_request.objects.filter(Staff_level=staff_level,Department=department,start_date=formatted_start_date,end_date=formatted_end_date).update(approved=True)
-             print("no overlaps")
+             
     return True
 
 #ensure the dates are not in the past. 
@@ -233,6 +224,7 @@ def past_dates(start,end,request):
     if (start < present or end < present or start > end) or (start == end):
         messages.error(request,"Dates are invalid!")
         return False
+        # Employee has to submit a holiday request one week prior to going on holidays.
     elif (start - present).days < 7:
         messages.error(request,"Please allow us one week to process your request.")
         return False
@@ -240,7 +232,22 @@ def past_dates(start,end,request):
 
 
 
- 
+def feedback(request):
+    if request.method == "GET":
+        first_name= request.user.first_name
+        last_name= request.user.last_name
+        department = request.user.department
+        staff_level =request.user.level
+        if Holidays_request.objects.filter(First_name=first_name,Last_name=last_name,Department=department,Staff_level=staff_level).exists():
+       # sending email is commented out
+                '''send_mail(
+            subject,
+            str(formatted_start_date) + " and end_date: " + str(formatted_end_date),
+            sender,         
+            ['abdullahzulfiqar110@gmail.com'],
+            fail_silently=False,
+        )'''
+    return render(request, 'pages/BookHolidays.html')
 
 
 

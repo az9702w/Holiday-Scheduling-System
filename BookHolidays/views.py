@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from   .utils import input_names, input_dates
+from   .utils import input_names, input_dates, feedback
 from accounts.models import Account
 from django.contrib.auth.decorators import login_required
 
@@ -13,4 +13,5 @@ def accounts(request):
 @login_required(login_url='/login/')     
 def different_dates(request):
      input_dates(request)
+     feedback(request)
      return render(request, 'pages/BookHolidays.html')

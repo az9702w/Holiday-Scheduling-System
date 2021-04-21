@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'BookHolidays.apps.BookholidaysConfig',
     'active_link',
+    'djangosecure',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +51,12 @@ INSTALLED_APPS = [
 
 
 ADMIN_SITE_HEADER = "Holiday Scheduling Administration"
+
+
+# Security of the application.
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
 
 
 MIDDLEWARE = [
