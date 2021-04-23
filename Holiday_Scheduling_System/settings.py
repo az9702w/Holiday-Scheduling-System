@@ -27,7 +27,7 @@ SECRET_KEY = '@xe8$fv&g61!vn1v@3q(9kbvjxd#^c%c**spcsg#uhs(r3x8$h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['obscure-crag-74123.herokuapp.com','www.obscure-crag-74123.herokuapp.com', '127.0.0.1']
 
 AUTH_USER_MODEL = 'accounts.Account'
 
