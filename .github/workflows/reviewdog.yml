@@ -24,9 +24,8 @@ jobs:
         run: go install golang.org/x/lint/golint@latest
 
       - name: Setup reviewdog
-        # uses: reviewdog/action-setup@v1
-        run: |
-          go install ./cmd/reviewdog
+        uses: reviewdog/action-setup@v1.0.3
+
       - name: Run reviewdog
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.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 }}
