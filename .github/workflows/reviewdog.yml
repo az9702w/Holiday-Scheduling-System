@@ -257,16 +257,3 @@ jobs:
             reviewdog -f=checkstyle -name="textlint" -reporter=github-check -level=info
           level: info
 
-  textlint:
-    name: runner / textlint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: reviewdog/action-setup@v1
-      - run: npm install
-      - name: textlint
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.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 }}
-        run: |
-          $(npm bin)/textlint -f checkstyle README.md | \
-            reviewdog -f=checkstyle -name="textlint" -reporter=github-check -level=info
