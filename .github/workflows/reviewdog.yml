@@ -237,8 +237,6 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           
-      - name: reviewdog-suggester
-        uses: reviewdog/action-suggester@v1
 
   alex:
     name: runner / alex
@@ -251,6 +249,4 @@ jobs:
           reporter: github-check
           level: info
           
-
-
 
