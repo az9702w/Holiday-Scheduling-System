@@ -32,8 +32,6 @@ jobs:
         run: |
           golint ./... | reviewdog -f=golint -name=golint-github-check -reporter=github-check -level=warning
           
-      - name: reviewdog-suggester
-        uses: reviewdog/action-suggester@v1
 
 
   reviewdog-pr:
@@ -162,6 +160,9 @@ jobs:
         run: |
           gofmt -s -d . | \
             reviewdog -name="gofmt" -f=diff -f.diff.strip=0 -reporter=github-pr-review
+            
+      - name: reviewdog-suggester
+        uses: reviewdog/action-suggester@v1
             
 
   golangci-lint:
