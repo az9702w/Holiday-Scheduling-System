@@ -161,8 +161,6 @@ jobs:
           gofmt -s -d . | \
             reviewdog -name="gofmt" -f=diff -f.diff.strip=0 -reporter=github-pr-review
             
-      - name: reviewdog-suggester
-        uses: reviewdog/action-suggester@v1
             
 
   golangci-lint:
@@ -238,6 +236,9 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
+          
+      - name: reviewdog-suggester
+        uses: reviewdog/action-suggester@v1
 
   alex:
     name: runner / alex
@@ -249,4 +250,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           level: info
+          
+
+
 
